@@ -1,3 +1,7 @@
+;; Author: Steven Yi 
+;; Date: 2024-05-02
+;; Description: Sound Bath using Solfeggio Frequencies
+
 start("ReverbMixer")
 
 xchnset("Reverb.fb", 0.75)
@@ -30,7 +34,6 @@ instr Main
 
   indx = int(rnd(ilen))
   ifreq = gifreqs[indx]
-  // print indx, ifreq
   schedule("S1", 0, 100, ifreq)
 
   if(rnd(1) < 0.25) then
@@ -40,7 +43,6 @@ instr Main
     od
     
     ifreq = gifreqs[indx2]
-    // print indx2, ifreq
     schedule("S1", .5 + rnd(2), 100, ifreq)
   endif
   

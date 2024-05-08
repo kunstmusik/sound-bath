@@ -15,8 +15,7 @@ xchnset("Reverb.fb", 0.75)
 // Crown Chakra: 963 Hz
 
 gifreqs[] = fillarray(396, 417, 528, 639, 741, 852, 963)
-
-rndseed(times:i() % 1)
+seed(0)
 
 instr S1
   asig = oscili(1, p4)
@@ -32,21 +31,21 @@ endin
 instr Main
   ilen = lenarray(gifreqs)
 
-  indx = int(rnd(ilen))
+  indx = int(random:i(0, ilen))
   ifreq = gifreqs[indx]
   schedule("S1", 0, 100, ifreq)
 
-  if(rnd(1) < 0.25) then
-    indx2 = int(rnd(ilen))
+  if(random:i(0, 1) < 0.25) then
+    indx2 = int(random:i(0, ilen))
     while (indx2 == indx) do
-      indx2 = int(rnd(ilen))
+      indx2 = int(random:i(0, ilen))
     od
     
     ifreq = gifreqs[indx2]
-    schedule("S1", .5 + rnd(2), 100, ifreq)
+    schedule("S1", .5 + random:i(0, 2), 100, ifreq)
   endif
   
-  schedule(p1, 5 + rnd(30), 0)
+  schedule(p1, 5 + random:i(0, 30), 0)
 endin
 
 schedule("Main", 0, 0)

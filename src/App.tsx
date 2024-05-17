@@ -20,6 +20,8 @@ const startCsound = async (csound: CsoundObj) => {
   await csound.setOption("--nchnls=2");
   await csound.setOption("--0dbfs=1");
   await csound.setOption("-m0");
+  await csound.setOption("-b128")
+  await csound.setOption("-B128")
 
   await csound.compileOrc(liveCodeOrc);
   await csound.start();

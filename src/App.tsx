@@ -1,5 +1,5 @@
 import { Csound, CsoundObj } from "@csound/browser";
-import liveCodeOrc from "./csound/livecode.orc?raw";
+import utilsOrc from "./csound/utils.orc?raw";
 import soundBathOrc from "./csound/sound-bath.orc?raw";
 import { useEffect, useState } from "react";
 
@@ -21,11 +21,10 @@ const startCsound = async (csound: CsoundObj) => {
   await csound.setOption("--0dbfs=1");
   await csound.setOption("-m0");
   await csound.setOption("-b128")
-  await csound.setOption("-B128")
+  await csound.setOption("-B1024")
 
-  await csound.compileOrc(liveCodeOrc);
+  await csound.compileOrc([utilsOrc, soundBathOrc].join("\n") );
   await csound.start();
-  await csound.compileOrc(soundBathOrc);
 
   const context = await csound.getAudioContext();
   if (context) {

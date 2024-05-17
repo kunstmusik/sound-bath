@@ -39,7 +39,10 @@ const App = () => {
 
   const startSoundBath = async () => {
     if (!csound) {
-      const cs = await Csound();
+      const cs = await Csound({
+        inputChannelCount: 0,
+        outputChannelCount: 2,
+      });
       setCsound(cs);
 
       const context = await cs?.getAudioContext();

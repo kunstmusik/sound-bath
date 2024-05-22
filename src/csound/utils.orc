@@ -18,8 +18,11 @@ instr ReverbMixer
   
   al, ar reverbsc a3, a4, .75, 12000
   
-  a1 = tanh(a1 + al)
-  a2 = tanh(a2 + ar) 
+  /*a1 = tanh(a1 + al)*/
+  /*a2 = tanh(a2 + ar) */
+
+  a1 = a1 + al
+  a2 = a2 + ar 
   
   out(a1, a2)
 

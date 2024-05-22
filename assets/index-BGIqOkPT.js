@@ -1919,8 +1919,11 @@ instr ReverbMixer
   
   al, ar reverbsc a3, a4, .75, 12000
   
-  a1 = tanh(a1 + al)
-  a2 = tanh(a2 + ar) 
+  /*a1 = tanh(a1 + al)*/
+  /*a2 = tanh(a2 + ar) */
+
+  a1 = a1 + al
+  a2 = a2 + ar 
   
   out(a1, a2)
 
@@ -1961,7 +1964,7 @@ seed(0)
 instr S1
   asig = oscili(1, p4)
   asig += oscili(.25, p4 * .5)
-  asig *= ampdbfs(-18)
+  asig *= ampdbfs(-12)
 
   asig *= transeg:a(0, .01, 0, 1, p3 - .01, -4.2, 0)
 

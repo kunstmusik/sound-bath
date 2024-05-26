@@ -20,7 +20,7 @@ const startCsound = async (csound: CsoundObj) => {
   await csound.setOption("--nchnls=2");
   await csound.setOption("--0dbfs=1");
   await csound.setOption("-m0");
-  await csound.setOption("-b128")
+  await csound.setOption("-b1024")
   await csound.setOption("-B1024")
 
   await csound.compileOrc([utilsOrc, soundBathOrc].join("\n") );
@@ -28,6 +28,7 @@ const startCsound = async (csound: CsoundObj) => {
 
   const context = await csound.getAudioContext();
   if (context) {
+    console.log(context);
     context.resume();
   }
 };
@@ -40,9 +41,17 @@ const App = () => {
 
   const startSoundBath = async () => {
     if (!csound) {
+
+      const ac = new AudioContext({
+        sampleRate: 44100,
+        latencyHint: "playback",
+      });
+
       const cs = await Csound({
+        // useWorker: false,
         inputChannelCount: 0,
         outputChannelCount: 2,
+        audioContext: ac,
       });
       setCsound(cs);
 

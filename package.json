@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "flac": "csound sound-bath-disk.csd && flac -f sound-bath.wav"
   },
   "dependencies": {
     "@csound/browser": "^6.18.7",

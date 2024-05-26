@@ -28,7 +28,6 @@ const startCsound = async (csound: CsoundObj) => {
 
   const context = await csound.getAudioContext();
   if (context) {
-    console.log(context);
     context.resume();
   }
 };
@@ -48,7 +47,6 @@ const App = () => {
       });
 
       const cs = await Csound({
-        // useWorker: false,
         inputChannelCount: 0,
         outputChannelCount: 2,
         audioContext: ac,
